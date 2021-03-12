@@ -2,14 +2,16 @@ bits 64
 
 section .text
 	global ft_strcmp
+	extern	putchar
 	ft_strcmp:
-		or	al, al		; rax = 0
-		jz	exit		; compare and inc until [rdi] = [rsi]
-		sub	al, [esi]	; exit if rdi = rsi
-		jnz	exit		
-		inc	esi
-		jmp	ft_strcmp
+		cld
+		repe	cmpsb		; compare and inc until [rdi] = [rsi]
+		cmp ecx, 0
+		je	exit
+		dec	rsi		
+		dec	rdi
 	exit:
+		mov	rax, 0
 		mov	rax, [rdi]
 		sub	rax, [rsi]
 		ret				; exit function

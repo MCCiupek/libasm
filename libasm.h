@@ -10,6 +10,7 @@
 
 ssize_t		ft_strlen(const char *c);
 ssize_t		ft_strlen2(const char *c);
+char		*ft_strcpy(const char *dst, const char *src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t		ft_write(int fd, const void *s, size_t nbyte);
 

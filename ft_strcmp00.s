@@ -3,15 +3,15 @@ bits 64
 section .text
 	global ft_strcmp
 	ft_strcmp:
-		xor	rax, rax	; rax = 0
-		repe	cmpsb		; compare and inc until [rdi] = [rsi]
-		je	exit		; exit if rdi = rsi
-		dec	rsi		
-		dec	rdi
+		or	al, al		; rax = 0
+		jz	exit		; compare and inc until [rdi] = [rsi]
+		sub	al, [rsi]	; exit if rdi = rsi
+		jnz	exit		
+		inc	rsi
+		jmp	ft_strcmp
 	exit:
 		mov	rax, [rdi]
 		sub	rax, [rsi]
-	;exit:	
 		ret				; exit function
 
 ; -------------------------------------------------------------------------------

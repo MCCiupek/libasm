@@ -26,6 +26,17 @@ void	ft_strlen_test(const char *s)
         return ;
 }
 
+void            ft_strcpy_test(const char *s1, char *s2)
+{
+        printf("- The src string is : '%s'\n", s1);
+        printf("- The dest string is : '%s'\n", s2);
+        //strcpy(s2, s1);
+        printf("1) lib.c strcpy function output is: %s\n", strcpy(s2, s1));
+        //d = ft_strcmp(s1, s2);
+        printf("2) my ft_strcpy function output is: %s\n", ft_strcpy(s2, s1));
+}
+
+
 void            ft_strcmp_test(const char *s1, const char *s2)
 {
         int d;
@@ -36,6 +47,18 @@ void            ft_strcmp_test(const char *s1, const char *s2)
         printf("1) lib.c strcmp function output is: %d\n", d);
         d = ft_strcmp(s1, s2);
         printf("2) my ft_strcmp function output is: %d\n", d);
+}
+
+void            ft_write_test(const char *s1, const char *s2)
+{
+        printf("- The input string 1 is : '%s'\n", s1);
+        printf("- The input string 2 is : '%s'\n", s2);
+        printf("1) lib.c write function output is:\n");
+        write(1, s1, strlen(s1));
+        write(1, &"\n", 1);
+        printf("2) my write function output is:\n");
+        ft_write(1, s1, strlen(s1));
+        ft_write(1, &"\n", 1);
 }
 
 int	main(int argc, char **argv)
@@ -50,6 +73,10 @@ int	main(int argc, char **argv)
 
 	printf("-------------- FT_STRCMP ---------------\n");
 	ft_strcmp_test(argv[1], argv[2]);
+	printf("----------------------------------------\n");
+
+	printf("-------------- FT_WRITE ---------------\n");
+	ft_write_test(argv[1], argv[2]);
 	printf("----------------------------------------\n");
 	
 	return (0);
