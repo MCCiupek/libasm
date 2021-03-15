@@ -4,27 +4,26 @@ section	.text
 	global ft_read
 	extern __errno_location
 	ft_read:
-		mov	rax, 2		; Open syscall
-		xor	rsi, rsi	; flags (0 = O_RDONLY)
+		xor	rax, rax		; Read syscall
 		syscall
-		test	rax, rax
-		jz	error
-		push	rax
-		sub	rsp, 16		; reserve 16 bytes of memory
-	read_buf:
-		xor	rax, rax	; Read syscall
-		mov	rdi, [rsp + 16]	; fd
-		mov	rsi, rsp	; address of buffer
-		mov	rdx, 16		; buffer size
-		syscall
-		test	rax, rax
-		jz	error
-		ret
+		cmp	rax, 0			; Return Value == 0 ?
+		jl	error			; if DF != 0 then error
+		ret				; else return
 	error:
-		push	rax
-		call	__errno_location
-		pop	qword[rax]
+		push	rax			; Save errno
+		call	__errno_location	; REtrieve address to errno
+		pop	qword[rax]		; Put errno in return value to __errno_location
 		neg	qword[rax]
-		mov	rax, -1
+		mov	rax, -1			; Return -1
 		ret
-		
+
+; -------------------------------------------------------------------------------
+; ssize_t read(int fd, void *buf, size_t count);
+;
+; read()  attempts  to read up to count bytes from
+; file descriptor fd into the buffer  starting  at
+; buf.
+;
+; Runs on 64-bit Linux only.
+; -------------------------------------------------------------------------------
+

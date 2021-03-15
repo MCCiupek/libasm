@@ -6,18 +6,18 @@
 #    By: mciupek <mciupek@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/10 12:09:44 by mciupek           #+#    #+#              #
-#    Updated: 2021/03/11 14:32:33 by mciupek          ###   ########.fr        #
+#    Updated: 2021/03/15 19:03:18 by mciupek          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =		libasm.a
 
 SRCS =		ft_strlen.s \
-		ft_strlen2.s \
 		ft_strcpy.s \
 		ft_strcmp.s \
 		ft_write.s \
-		hello_world.s
+		ft_read.s \
+		ft_strdup.s
 
 NA = 		nasm
 
@@ -25,7 +25,7 @@ CC =		clang
 
 N_FLAGS =	-f elf64
 
-C_FLAGS =	-Wall -Werror -Wextra
+C_FLAGS =	-Wall -Werror -Wextra -g -fno-builtin -fsanitize=address
 
 RM =		rm -f
 

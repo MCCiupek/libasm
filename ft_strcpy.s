@@ -8,19 +8,25 @@ section .text
 		mov	rbp, rsp
 		mov	rdx, 0
 	loop:
-		;cmp	BYTE [rsi + rdx], 0
-		;je	exit
 		mov	al, BYTE [rsi + rdx]
 		mov	BYTE [rdi + rdx], al
 		inc	rdx
 		cmp	al, 0
 		jne	loop
-		;jmp	loop
-	;exit:
-	;	xor	al, al
-	;	mov	BYTE [rdi + rdx], al	
 		mov	rax, rdi
 		mov	rsp, rbp
 		pop	rdx
 		pop	rbp
 		ret
+
+;-------------------------------------------------------------------------------
+; char *strcpy(char *dest, const char *src);
+;
+; The  strcpy()  function copies the string pointed to by
+; src, including the terminating null byte ('\0'), to the
+; buffer  pointed  to by dest. 
+;
+; Runs on 64-bit Linux only.
+; -------------------------------------------------------------------------------
+
+
