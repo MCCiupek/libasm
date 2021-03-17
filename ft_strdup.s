@@ -13,6 +13,7 @@ section	.text
 		call	ft_strlen		; get length
 		inc	rax			; add one for the null-terminating character
 		mov	rdi, rax		; move length to rdi to use it as argument
+		;mov	rdi, -1
 		call	malloc			; call malloc(length)
 		;test	rax, rax
 		cmp	rax, 0			; if malloc returns NULL then,
@@ -22,10 +23,12 @@ section	.text
 		call	ft_strcpy		; call strcpy
 		ret				; return
 	exit:
-		push	rax			; save errno
+	;	push	rax			; save errno
 		call	__errno_location	; retrieve errno address
-		pop	qword[rax]
-		neg	qword[rax]
+		mov	rdi, 12
+		mov 	[rax],rdi
+	;	pop	qword[rax]
+	;	neg	qword[rax]
 		mov	rax, 0			; return 0
 		pop	rdi
 		ret

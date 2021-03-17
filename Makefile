@@ -25,7 +25,7 @@ CC =		clang
 
 N_FLAGS =	-f elf64
 
-C_FLAGS =	-Wall -Werror -Wextra -g -fno-builtin -fsanitize=address
+C_FLAGS =	-Wall -Werror -Wextra# -g -fno-builtin -fsanitize=address
 
 RM =		rm -f
 

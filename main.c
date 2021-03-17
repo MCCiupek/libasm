@@ -9,7 +9,6 @@
 /*   Updated: 2021/03/15 16:52:34 by mciupek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libasm.h"
 
 void	ft_strlen_test(const char *s)
@@ -28,9 +27,7 @@ void            ft_strcpy_test(const char *s1, char *s2)
 {
         printf("- The src string is : '%s'\n", s1);
         printf("- The dest string is : '%s'\n", s2);
-        //strcpy(s2, s1);
         printf("1) lib.c strcpy function output is: %s\n", strcpy(s2, s1));
-        //d = ft_strcmp(s1, s2);
         printf("2) my ft_strcpy function output is: %s\n", ft_strcpy(s2, s1));
 }
 
@@ -46,18 +43,6 @@ void            ft_strcmp_test(const char *s1, const char *s2)
  	d = ft_strcmp(s1, s2);
         printf("2) my ft_strcmp function output is: %d\n", d);
 }  
-
-/*void            ft_write_test(const char *s1, const char *s2)
-{
-        printf("- The input string 1 is : '%s'\n", s1);
-        printf("- The input string 2 is : '%s'\n", s2);
-        printf("1) lib.c write function output is:\n");
-        write(1, s1, strlen(s1));
-        write(1, &"\n", 1);
-        printf("2) my write function output is:\n");
-        ft_write(1, s1, strlen(s1));
-        ft_write(1, &"\n", 1);
-}*/
 
 void    ft_write_test(int fildes, const void *buf, size_t nbyte)
 {
@@ -114,8 +99,8 @@ void            ft_strdup_test(const char *s)
 {
         char            *dst;
         char            *dst2;
-
-        printf("src string is : %s\n", s);
+        
+	printf("src string is : %s\n", s);
         printf("1) lib.c strdup function output is:\n");
         errno = 0;
         dst = strdup(s);
@@ -124,7 +109,7 @@ void            ft_strdup_test(const char *s)
         dst2 = ft_strdup(s);
         printf("2) my ft_strdup function output is:\n");
         printf("%s | errno : %d\n", dst2, errno);
-        if (dst)
+	if (dst)
 		free(dst);
         if (dst2)
 		free(dst2);
@@ -203,13 +188,13 @@ int	main(int argc, char **argv)
 
 	printf("-------------- FT_READ ---------------\n");
         printf("len > filesize\n");
-        ft_read_test("read.txt", 300);
+        ft_read_test("tests/read.txt", 300);
         printf("len < filesize\n");
-        ft_read_test("read.txt", 30);
+        ft_read_test("tests/read.txt", 30);
         printf("len < 0\n");
-        ft_read_test("read.txt", -300);
+        ft_read_test("tests/read.txt", -300);
         printf("no reading rights\n");
-        ft_read_test("norights.txt", 300);
+        ft_read_test("tests/norights.txt", 300);
         printf("NULL string\n");
         ft_read_test(NULL, 300);
 	printf("----------------------------------------\n");
